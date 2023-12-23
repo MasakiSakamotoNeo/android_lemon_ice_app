@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -30,11 +32,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -63,8 +65,22 @@ dependencies {
     // Splash Api
     implementation("androidx.core:core-splashscreen:1.0.1")
 
+    // SystemUiController
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.17.0")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.6")
+
     // Lottie animation
     implementation("com.airbnb.android:lottie-compose:6.2.0")
+
+    // hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+    // collapsing Toolbar
+    implementation("me.onebone:toolbar-compose:2.3.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

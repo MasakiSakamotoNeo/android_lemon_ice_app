@@ -27,7 +27,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,21 +38,24 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.lemoniceapp.R
 
 @Composable
-fun TopScreen() {
+fun TopScreen(
+    onClickNext: () -> Unit = {}
+) {
     val composition = rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lemon_ice_top))
     val progress by animateLottieCompositionAsState(
         composition = composition.value,
         iterations = LottieConstants.IterateForever
     )
 
-    val infiniteTransition = rememberInfiniteTransition()
+    val infiniteTransition = rememberInfiniteTransition("infinite repeatable")
     val color by infiniteTransition.animateColor(
         initialValue = colorResource(id = R.color.lemon_ice_yellow),
         targetValue = colorResource(id = R.color.lemon_ice_green),
         animationSpec = infiniteRepeatable(
             animation = tween(durationMillis = 5000, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
-        )
+        ),
+        label = "next button color"
     )
 
     Box(
@@ -83,9 +85,7 @@ fun TopScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(54.dp),
-                onClick = {
-                    // TODO:
-                },
+                onClick = { onClickNext() },
                 colors = ButtonDefaults.buttonColors(containerColor = color),
                 shape = CircleShape
             ) {

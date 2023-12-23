@@ -1,10 +1,12 @@
-package com.example.lemoniceapp
+package com.example.lemoniceapp.ui.top
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.lemoniceapp.ui.main.MainActivity
 import com.example.lemoniceapp.ui.theme.LemonICEAppTheme
 import com.example.lemoniceapp.ui.top.TopScreen
 
@@ -18,7 +20,10 @@ class TopActivity : ComponentActivity() {
         )
         setContent {
             LemonICEAppTheme {
-                TopScreen()
+                TopScreen {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }
