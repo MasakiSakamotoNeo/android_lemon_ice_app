@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.lemoniceapp"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.lemoniceapp"
@@ -62,6 +62,9 @@ dependencies {
 
     // Splash Api
     implementation("androidx.core:core-splashscreen:1.0.1")
+
+    // Lottie animation
+    implementation("com.airbnb.android:lottie-compose:6.2.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
