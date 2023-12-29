@@ -12,7 +12,10 @@
     <color name="blue_800">#032C45</color>
 
     <color name="lemon_ice_white">#F3F2EC</color>
+    <color name="lemon_ice_work_item_bg">#DAD9D4</color>
     <color name="lemon_ice_yellow">#F8EB7D</color>
     <color name="lemon_ice_green">#AFC95C</color>
     <color name="lemon_ice_orange">#EFAE48</color>
+    <color name="lemon_ice_text_green">#408F91</color>
+    <color name="lemon_ice_bg">#FFFB8C</color>
 </resources>

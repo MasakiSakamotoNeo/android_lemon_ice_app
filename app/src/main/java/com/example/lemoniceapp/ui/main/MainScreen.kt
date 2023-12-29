@@ -6,7 +6,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
@@ -18,7 +17,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -31,8 +29,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.lemoniceapp.R
+import com.example.lemoniceapp.ui.main.component.HistorySection
+import com.example.lemoniceapp.ui.main.component.TimeLineSection
+import com.example.lemoniceapp.ui.main.component.WorksSection
 
 private val headerHeight = 250.dp
 private val toolbarHeight = 56.dp
@@ -71,7 +71,7 @@ fun CollapsingToolbarParallaxEffect(
     val headerHeightPx = with(LocalDensity.current) { headerHeight.toPx() }
     val toolbarHeightPx = with(LocalDensity.current) { toolbarHeight.toPx() }
 
-    Box(modifier = modifier) {
+    Box(modifier = modifier.background(color = colorResource(R.color.lemon_ice_white))) {
         Header(
             scroll = scroll,
             headerHeightPx = headerHeightPx,
@@ -128,14 +128,20 @@ private fun Body(
     scroll: ScrollState,
     modifier: Modifier = Modifier
 ) {
-    // 今までのICE
-    HistorySection()
+    Column(
+        modifier = modifier.verticalScroll(scroll)
+    ) {
+        Spacer(Modifier.height(headerHeight))
 
-    // 今までの作品
-    WorksSection()
+        // 今までのICE
+        HistorySection()
 
-    // 今回のタイムライン
-    TimeLineSection()
+        // 今までの作品
+        WorksSection()
+
+        // 今回のタイムライン
+        TimeLineSection()
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -189,51 +195,6 @@ private fun Toolbar(
             )
         )
     }
-}
-
-@Composable
-private fun HistorySection() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        Text(
-            text = "History",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold
-        )
-    }
-
-    LazyRow {
-        items(histories.size) { index ->
-            CardItem(index)
-        }
-    }
-}
-
-@Composable
-private fun CardItem(index: Int) {
-    
-}
-
-@Preview
-@Composable
-private fun HistorySectionPreview() {
-    HistorySection()
-}
-
-@Composable
-private fun WorksSection() {
-    // TODO:
-}
-
-@Composable
-private fun TimeLineSection() {
-    // TODO:
 }
 
 @Preview
