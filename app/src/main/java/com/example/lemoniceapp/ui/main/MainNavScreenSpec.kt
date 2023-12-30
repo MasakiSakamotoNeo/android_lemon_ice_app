@@ -11,6 +11,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import com.example.lemoniceapp.R
 import com.example.lemoniceapp.ui.history.HistoryDetailScreen
+import com.example.lemoniceapp.ui.timeline.TimeLineDetailScreen
 import com.example.lemoniceapp.ui.work.WorkDetailScreen
 import com.google.accompanist.systemuicontroller.SystemUiController
 
@@ -21,7 +22,8 @@ sealed interface MainNavScreenSpec {
         fun getAllMainNavScreenSpec() = listOf(
             MainScreenSpec,
             HistoryScreenSpec,
-            WorkScreenSpec
+            WorkScreenSpec,
+            TimeLineScreenSpec
         )
     }
 
@@ -102,5 +104,24 @@ object WorkScreenSpec : MainNavScreenSpec {
 
         // Work画面に遷移
         WorkDetailScreen()
+    }
+}
+
+/**
+ * TimeLine画面遷移仕様
+ */
+object TimeLineScreenSpec : MainNavScreenSpec {
+
+    override val route = "timeline_screen"
+
+    @Composable
+    override fun Content(
+        navController: NavController,
+        navBackStackEntry: NavBackStackEntry,
+        systemUiController: SystemUiController
+    ) {
+
+        // TimeLine画面に遷移
+        TimeLineDetailScreen()
     }
 }

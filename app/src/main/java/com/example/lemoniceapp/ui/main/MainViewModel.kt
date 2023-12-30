@@ -30,6 +30,9 @@ class MainViewModel @Inject constructor(
             is OnClickWorkItem -> {
                 navController?.navigate(WorkScreenSpec.route)
             }
+            is OnClickTimeLineItem -> {
+                navController?.navigate(TimeLineScreenSpec.route)
+            }
         }
     }
 }

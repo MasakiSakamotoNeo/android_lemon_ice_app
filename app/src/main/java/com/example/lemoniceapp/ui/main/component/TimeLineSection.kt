@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -27,7 +26,9 @@ import com.example.lemoniceapp.ui.main.component.timeline.TimeLineOption
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun TimeLineSection() {
+fun TimeLineSection(
+    onClickTimeLineItem: (TimeLineItem) -> Unit = {}
+) {
     Column {
         Text(
             text = "TimeLine",
@@ -99,7 +100,7 @@ fun TimeLineSection() {
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .clip(RoundedCornerShape(24.dp))
-                            .clickable {},
+                            .clickable { onClickTimeLineItem(item) },
                     )
                 }
             },

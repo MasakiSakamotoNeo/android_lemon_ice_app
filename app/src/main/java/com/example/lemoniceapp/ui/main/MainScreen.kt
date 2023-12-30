@@ -144,7 +144,7 @@ private fun Body(
         WorksSection { onEvent(OnClickWorkItem(it)) }
 
         // 今回のタイムライン
-        TimeLineSection()
+        TimeLineSection { onEvent(OnClickTimeLineItem(it)) }
     }
 }
 
