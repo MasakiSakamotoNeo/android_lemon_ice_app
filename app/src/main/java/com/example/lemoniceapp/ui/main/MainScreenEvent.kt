@@ -9,3 +9,7 @@ object OnClickDrawerMenu : MainScreenEvent
 data class OnClickHistoryItem(
     val pair: Pair<String, Int>
 ) : MainScreenEvent
+
+data class OnClickWorkItem(
+    val triple: Triple<String, String, Int>
+) : MainScreenEvent

@@ -27,6 +27,9 @@ class MainViewModel @Inject constructor(
             is OnClickHistoryItem -> {
                 navController?.navigate(HistoryScreenSpec.route)
             }
+            is OnClickWorkItem -> {
+                navController?.navigate(WorkScreenSpec.route)
+            }
         }
     }
 }

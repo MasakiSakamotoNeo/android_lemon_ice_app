@@ -141,7 +141,7 @@ private fun Body(
         HistorySection { onEvent(OnClickHistoryItem(it)) }
 
         // 今までの作品
-        WorksSection()
+        WorksSection { onEvent(OnClickWorkItem(it)) }
 
         // 今回のタイムライン
         TimeLineSection()

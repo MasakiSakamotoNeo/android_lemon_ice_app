@@ -1,4 +1,4 @@
-package com.example.lemoniceapp.ui.history
+package com.example.lemoniceapp.ui.work
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -10,19 +10,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun HistoryScreen() {
-    HistoryUI()
+fun WorkDetailScreen() {
+    WorkDetailUI()
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun HistoryUI() {
+private fun WorkDetailUI() {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Box() { Text(text = "History") }
-                },
+                    Box() {
+                        Text(text = "Work")
+                    }
+                }
             )
         }
     ) { paddingValues ->

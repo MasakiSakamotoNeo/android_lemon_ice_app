@@ -27,7 +27,9 @@ val worksList = listOf(
     Triple("TODOリスト", "山田 太郎", R.mipmap.ic_launcher),
 )
 @Composable
-fun WorksSection() {
+fun WorksSection(
+    onClickWorkItem: (Triple<String, String, Int>) -> Unit
+) {
     Column {
         Text(
             text = "Works",
@@ -39,7 +41,7 @@ fun WorksSection() {
 
         LazyRow {
             items(worksList.size) { index ->
-                WorkItem(index)
+                WorkItem(index) { onClickWorkItem(it) }
             }
         }
     }
@@ -47,7 +49,8 @@ fun WorksSection() {
 
 @Composable
 private fun WorkItem(
-    index: Int
+    index: Int,
+    onClickWorkItem: (Triple<String, String, Int>) -> Unit = {}
 ) {
     val workItem = worksList[index]
     var lastPaddingEnd = if (index == worksList.size - 1) 16.dp else 0.dp
@@ -61,7 +64,7 @@ private fun WorkItem(
                 .clip(RoundedCornerShape(24.dp))
                 .background(colorResource(R.color.lemon_ice_work_item_bg))
                 .size(120.dp)
-                .clickable {}
+                .clickable { onClickWorkItem(workItem) }
                 .padding(13.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
