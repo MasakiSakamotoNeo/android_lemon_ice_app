@@ -43,22 +43,22 @@ fun TimeLineSection(
                 TimeLineItem(
                     title = "Opening",
                     time = "13:00〜",
-                    imageResId = R.drawable.welcome_bg
+                    imageResId = R.drawable.opening_header
                 ),
                 TimeLineItem(
                     title = "ExtensionLab",
                     time = "13:20〜",
-                    imageResId = R.mipmap.melon_ice
+                    imageResId = R.drawable.extensionlab_team_header
                 ),
                 TimeLineItem(
                     title = "ハッカソン発表会",
                     time = "14:00〜",
-                    imageResId = R.mipmap.melon_ice
+                    imageResId = R.drawable.hackathon_header
                 ),
                 TimeLineItem(
                     title = "アプリ部活動報告",
                     time = "14:50〜",
-                    imageResId = R.mipmap.melon_ice
+                    imageResId = R.drawable.itpm_application_section_header
                 ),
                 TimeLineItem(
                     title = "0から1へインフラの世界",
@@ -66,9 +66,9 @@ fun TimeLineSection(
                     imageResId = R.drawable.hirata_header
                 ),
                 TimeLineItem(
-                    title = "坂本",
+                    title = "3Dメジャー機能実装で難しかったところ",
                     time = "16:10〜",
-                    imageResId = R.drawable.hirata_header
+                    imageResId = R.drawable.sakamoto_header
                 ),
                 TimeLineItem(
                     title = "Closing",
