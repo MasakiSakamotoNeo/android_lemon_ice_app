@@ -11,6 +11,7 @@ import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import com.example.lemoniceapp.R
+import com.example.lemoniceapp.ui.history.HistoryScreen
 import com.google.accompanist.systemuicontroller.SystemUiController
 
 sealed interface MainNavScreenSpec {
@@ -18,7 +19,8 @@ sealed interface MainNavScreenSpec {
     companion object {
 
         fun getAllMainNavScreenSpec() = listOf(
-            MainScreenSpec
+            MainScreenSpec,
+            HistoryScreenSpec
         )
     }
 
@@ -34,6 +36,9 @@ sealed interface MainNavScreenSpec {
     )
 }
 
+/**
+ * メイン画面遷移仕様
+ */
 object MainScreenSpec : MainNavScreenSpec {
 
     override val route = "main_screen"
@@ -58,5 +63,24 @@ object MainScreenSpec : MainNavScreenSpec {
 
         // Main画面に遷移
         MainScreen(viewModel = viewModel)
+    }
+}
+
+/**
+ * History画面遷移仕様
+ */
+object HistoryScreenSpec : MainNavScreenSpec {
+
+    override val route = "history_screen"
+
+    @Composable
+    override fun Content(
+        navController: NavController,
+        navBackStackEntry: NavBackStackEntry,
+        systemUiController: SystemUiController
+    ) {
+
+        // History画面に遷移
+        HistoryScreen()
     }
 }

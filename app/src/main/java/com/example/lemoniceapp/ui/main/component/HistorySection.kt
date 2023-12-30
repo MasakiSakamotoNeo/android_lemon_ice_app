@@ -26,7 +26,9 @@ import com.example.lemoniceapp.R
 import com.example.lemoniceapp.ui.main.histories
 
 @Composable
-fun HistorySection() {
+fun HistorySection(
+    onClickItem: (Pair<String, Int>) -> Unit = {}
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -45,13 +47,16 @@ fun HistorySection() {
 
     LazyRow {
         items(histories.size) { index ->
-            CardItem(index)
+            CardItem(index) { onClickItem(it) }
         }
     }
 }
 
 @Composable
-private fun CardItem(index: Int) {
+private fun CardItem(
+    index: Int,
+    onClickItem: (Pair<String, Int>) -> Unit = {}
+) {
     val history = histories[index]
 
     var lastItemPaddingEnd = if (index == histories.size - 1) 16.dp else 0.dp
@@ -68,7 +73,7 @@ private fun CardItem(index: Int) {
             modifier = Modifier
                 .padding(vertical = 12.dp)
                 .clip(RoundedCornerShape(24.dp))
-                .clickable {},
+                .clickable { onClickItem(history) },
         )
     }
 }

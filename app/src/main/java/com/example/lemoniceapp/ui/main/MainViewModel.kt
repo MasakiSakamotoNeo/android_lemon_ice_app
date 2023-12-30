@@ -16,13 +16,16 @@ class MainViewModel @Inject constructor(
 
     fun onEvent(event: MainScreenEvent) {
         when (event) {
-            OnClickDrawerMenu -> {
+            is OnClickDrawerMenu -> {
                 viewModelScope.launch {
                     // TODO:
                 }
             }
-            OnClickItem -> {
+            is OnClickItem -> {
                 // TODO:
+            }
+            is OnClickHistoryItem -> {
+                navController?.navigate(HistoryScreenSpec.route)
             }
         }
     }

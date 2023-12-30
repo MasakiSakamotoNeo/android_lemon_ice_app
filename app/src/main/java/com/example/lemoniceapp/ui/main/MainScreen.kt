@@ -52,20 +52,22 @@ fun MainScreen(
 }
 
 @Composable
-fun MainUI(
+private fun MainUI(
     onEvent: (MainScreenEvent) -> Unit
 ) {
 
     Surface {
         CollapsingToolbarParallaxEffect(
-            Modifier.fillMaxSize()
+            Modifier.fillMaxSize(),
+            onEvent
         )
     }
 }
 
 @Composable
 fun CollapsingToolbarParallaxEffect(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onEvent: (MainScreenEvent) -> Unit = {}
 ) {
     val scroll: ScrollState = rememberScrollState()
     val headerHeightPx = with(LocalDensity.current) { headerHeight.toPx() }
@@ -81,7 +83,8 @@ fun CollapsingToolbarParallaxEffect(
         )
         Body(
             scroll = scroll,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            onEvent = onEvent
         )
         Toolbar(
             scroll = scroll,
@@ -126,7 +129,8 @@ private fun Header(
 @Composable
 private fun Body(
     scroll: ScrollState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onEvent: (MainScreenEvent) -> Unit
 ) {
     Column(
         modifier = modifier.verticalScroll(scroll)
@@ -134,7 +138,7 @@ private fun Body(
         Spacer(Modifier.height(headerHeight))
 
         // 今までのICE
-        HistorySection()
+        HistorySection { onEvent(OnClickHistoryItem(it)) }
 
         // 今までの作品
         WorksSection()
