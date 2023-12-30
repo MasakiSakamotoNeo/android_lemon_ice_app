@@ -1,6 +1,7 @@
 package com.example.lemoniceapp.ui.main.component.timeline
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,6 +13,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -23,22 +25,22 @@ private const val HeaderIndex = -1
 
 @ExperimentalFoundationApi
 @Composable
-fun <K, E : TimeLineItem<K>> TimeLine(
+fun <E : TimeLineItem> TimeLine(
     items: List<E>,
     modifier: Modifier = Modifier,
     timeLineOption: TimeLineOption = TimeLineOption(),
     timeLinePadding: TimeLinePadding = TimeLinePadding(),
-    header: @Composable (K) -> Unit,
+    header: @Composable (String) -> Unit,
     content: @Composable (E) -> Unit
 ) {
 
     Column(
         modifier = modifier
     ) {
-        val groupedItems = items.groupBy { it.key }
+        val groupedItems = items.groupBy { it.title }
         groupedItems.onEachIndexed { groupIndex, (key, elements) ->
             TimeLineView(
-                key = key,
+                title = key,
                 item = elements.first(),
                 groupSize = groupedItems.size,
                 groupIndex = groupIndex,
@@ -53,7 +55,7 @@ fun <K, E : TimeLineItem<K>> TimeLine(
 
             elements.forEachIndexed { elementIndex, element ->
                 TimeLineView(
-                    key = key,
+                    title = key,
                     item = element,
                     groupSize = groupedItems.size,
                     groupIndex = groupIndex,
@@ -71,8 +73,8 @@ fun <K, E : TimeLineItem<K>> TimeLine(
 }
 
 @Composable
-private fun <K, E : TimeLineItem<K>> TimeLineView(
-    key: K,
+private fun <E : TimeLineItem> TimeLineView(
+    title: String,
     item: E,
     groupSize: Int,
     groupIndex: Int,
@@ -81,7 +83,7 @@ private fun <K, E : TimeLineItem<K>> TimeLineView(
     timeLineOption: TimeLineOption,
     timeLinePadding: TimeLinePadding,
     isHeader: Boolean,
-    header: @Composable (K) -> Unit,
+    header: @Composable (String) -> Unit,
     content: @Composable (E) -> Unit
 ) {
     ConstraintLayout(
@@ -90,24 +92,9 @@ private fun <K, E : TimeLineItem<K>> TimeLineView(
             .height(timeLineOption.contentHeight)
     ) {
         val (circle, circleInnerLine, topLine, bottomLine, timeLineContent) = createRefs()
-        Icon(
-            painter = painterResource(
-                if (groupIndex % 2 == 1) {
-                    R.drawable.ic_outline_change_circle_24
-                } else {
-                    R.drawable.ic_baseline_check_circle_outline_24
-                }
-            ),
+        Image(
+            painter = painterResource(R.drawable.timeline_icon),
             contentDescription = "Item Image",
-            tint = if (isHeader) {
-                if (groupIndex % 2 == 1) {
-                    Color(0xFFBE2727)
-                } else {
-                    Color(0xFF0C7C0C)
-                }
-            } else {
-                Color.Transparent
-            },
             modifier = Modifier
                 .size(timeLineOption.circleSize)
                 .constrainAs(circle) {
@@ -115,6 +102,7 @@ private fun <K, E : TimeLineItem<K>> TimeLineView(
                     top.linkTo(timeLineContent.top)
                     bottom.linkTo(timeLineContent.bottom)
                 }
+                .alpha(if (isHeader) 1f else 0f)
         )
         if (!isHeader) {
             Divider(
@@ -138,8 +126,8 @@ private fun <K, E : TimeLineItem<K>> TimeLineView(
             }
         ) {
             if (isHeader) {
-                header(key)
-            } else {
+                header(title)
+            } else if (groupIndex != groupSize - 1) {
                 content(item)
             }
         }

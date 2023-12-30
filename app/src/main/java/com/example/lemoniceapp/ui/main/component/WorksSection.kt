@@ -54,11 +54,11 @@ private fun WorkItem(
 
     Box(
         modifier = Modifier
-            .padding(start = 16.dp, end = lastPaddingEnd)
+            .padding(top = 8.dp, bottom = 8.dp, start = 16.dp, end = lastPaddingEnd)
     ) {
         Column(
             modifier = Modifier
-                .clip(RoundedCornerShape(25.dp))
+                .clip(RoundedCornerShape(24.dp))
                 .background(colorResource(R.color.lemon_ice_work_item_bg))
                 .size(120.dp)
                 .clickable {}

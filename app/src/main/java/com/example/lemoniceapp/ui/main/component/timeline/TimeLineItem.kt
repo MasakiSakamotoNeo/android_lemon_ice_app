@@ -1,5 +1,7 @@
 package com.example.lemoniceapp.ui.main.component.timeline
 
-interface TimeLineItem<K> {
-    val key: K
-}
+data class TimeLineItem(
+    val title: String,
+    val time: String,
+    val imageResId: Int
+)

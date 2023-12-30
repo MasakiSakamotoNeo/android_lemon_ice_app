@@ -67,7 +67,7 @@ private fun CardItem(index: Int) {
             contentScale = ContentScale.Fit,
             modifier = Modifier
                 .padding(vertical = 12.dp)
-                .clip(RoundedCornerShape(25.dp))
+                .clip(RoundedCornerShape(24.dp))
                 .clickable {},
         )
     }
