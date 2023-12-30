@@ -6,11 +6,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.DateRange
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -42,37 +47,37 @@ fun TimeLineSection(
             items = listOf(
                 TimeLineItem(
                     title = "Opening",
-                    time = "13:00〜",
+                    time = "13:00〜13:10",
                     imageResId = R.drawable.opening_header
                 ),
                 TimeLineItem(
                     title = "ExtensionLab",
-                    time = "13:20〜",
+                    time = "13:20〜13:50",
                     imageResId = R.drawable.extensionlab_team_header
                 ),
                 TimeLineItem(
                     title = "ハッカソン発表会",
-                    time = "14:00〜",
+                    time = "14:00〜14:40",
                     imageResId = R.drawable.hackathon_header
                 ),
                 TimeLineItem(
                     title = "アプリ部活動報告",
-                    time = "14:50〜",
+                    time = "14:50〜15:20",
                     imageResId = R.drawable.itpm_application_section_header
                 ),
                 TimeLineItem(
                     title = "0から1へインフラの世界",
-                    time = "15:30〜",
+                    time = "15:30〜16:00",
                     imageResId = R.drawable.hirata_header
                 ),
                 TimeLineItem(
                     title = "3Dメジャー機能実装で難しかったところ",
-                    time = "16:10〜",
+                    time = "16:10〜16:40",
                     imageResId = R.drawable.sakamoto_header
                 ),
                 TimeLineItem(
                     title = "Closing",
-                    time = "16:50〜",
+                    time = "16:50〜17:00",
                     imageResId = R.mipmap.melon_ice
                 )
             ),
@@ -87,12 +92,33 @@ fun TimeLineSection(
                         .padding(start = 8.dp)
                 )
             },
+            time = { timeStr ->
+                // TODO:
+                Row(
+                    modifier = Modifier
+                        .background(colorResource(R.color.lemon_ice_white))
+                        .padding(start = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.DateRange,
+                        contentDescription = "time icon",
+                        tint = colorResource(R.color.lemon_ice_text_green)
+                    )
+                    Text(
+                        text = timeStr,
+                        color = colorResource(R.color.lemon_ice_text_green),
+                        fontSize = 12.sp,
+                        modifier = Modifier.padding(start = 4.dp)
+                    )
+                }
+            },
             content = { item ->
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(colorResource(R.color.lemon_ice_white))
-                        .padding(end = 48.dp)
+                        .padding(top = 8.dp, end = 48.dp)
                 ) {
                     Image(
                         painter = painterResource(item.imageResId),
@@ -104,7 +130,7 @@ fun TimeLineSection(
                     )
                 }
             },
-            timeLineOption = TimeLineOption(contentHeight = 80.dp),
+            timeLineOption = TimeLineOption(contentHeight = 88.dp),
             modifier = Modifier
                 .background(colorResource(R.color.lemon_ice_white))
                 .padding(horizontal = 16.dp)

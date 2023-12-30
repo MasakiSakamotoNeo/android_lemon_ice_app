@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -31,6 +32,7 @@ fun <E : TimeLineItem> TimeLine(
     timeLineOption: TimeLineOption = TimeLineOption(),
     timeLinePadding: TimeLinePadding = TimeLinePadding(),
     header: @Composable (String) -> Unit,
+    time: @Composable (String) -> Unit,
     content: @Composable (E) -> Unit
 ) {
 
@@ -50,6 +52,7 @@ fun <E : TimeLineItem> TimeLine(
                 timeLinePadding = timeLinePadding,
                 isHeader = true,
                 header = header,
+                time = time,
                 content = content
             )
 
@@ -84,6 +87,7 @@ private fun <E : TimeLineItem> TimeLineView(
     timeLinePadding: TimeLinePadding,
     isHeader: Boolean,
     header: @Composable (String) -> Unit,
+    time: @Composable (String) -> Unit = {},
     content: @Composable (E) -> Unit
 ) {
     ConstraintLayout(
@@ -91,7 +95,7 @@ private fun <E : TimeLineItem> TimeLineView(
             .fillMaxWidth()
             .height(timeLineOption.contentHeight)
     ) {
-        val (circle, circleInnerLine, topLine, bottomLine, timeLineContent) = createRefs()
+        val (circle, circleInnerLine, topLine, bottomLine, timeLineContent, timeContent) = createRefs()
         Image(
             painter = painterResource(R.drawable.timeline_icon),
             contentDescription = "Item Image",
@@ -163,6 +167,15 @@ private fun <E : TimeLineItem> TimeLineView(
                 },
                 color = timeLineOption.lineColor
             )
+            Surface(
+                modifier = Modifier.constrainAs(timeContent) {
+                    start.linkTo(circle.end, timeLinePadding.contentStart)
+                    top.linkTo(circle.bottom)
+                    bottom.linkTo(parent.bottom)
+                }
+            ) {
+                if (isHeader) { time(item.time) }
+            }
         }
     }
 }
