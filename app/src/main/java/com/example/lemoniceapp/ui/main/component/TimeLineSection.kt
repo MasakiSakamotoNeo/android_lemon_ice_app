@@ -108,7 +108,7 @@ fun TimeLineSection(
                     Text(
                         text = timeStr,
                         color = colorResource(R.color.lemon_ice_text_green),
-                        fontSize = 12.sp,
+                        fontSize = 14.sp,
                         modifier = Modifier.padding(start = 4.dp)
                     )
                 }
