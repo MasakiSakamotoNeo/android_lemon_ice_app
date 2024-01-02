@@ -73,7 +73,7 @@ fun CollapsingToolbarParallaxEffect(
     val headerHeightPx = with(LocalDensity.current) { headerHeight.toPx() }
     val toolbarHeightPx = with(LocalDensity.current) { toolbarHeight.toPx() }
 
-    Box(modifier = modifier.background(color = colorResource(R.color.lemon_ice_white))) {
+    Box(modifier = modifier.background(color = colorResource(R.color.lemon_ice_main_bg))) {
         Header(
             scroll = scroll,
             headerHeightPx = headerHeightPx,

@@ -88,7 +88,7 @@ fun TimeLineSection(
                     fontSize = 16.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
-                        .background(colorResource(R.color.lemon_ice_white))
+                        .background(colorResource(id = R.color.lemon_ice_main_bg))
                         .padding(start = 8.dp)
                 )
             },
@@ -96,7 +96,7 @@ fun TimeLineSection(
                 // TODO:
                 Row(
                     modifier = Modifier
-                        .background(colorResource(R.color.lemon_ice_white))
+                        .background(colorResource(R.color.lemon_ice_main_bg))
                         .padding(start = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -117,7 +117,7 @@ fun TimeLineSection(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(colorResource(R.color.lemon_ice_white))
+                        .background(colorResource(R.color.lemon_ice_main_bg))
                         .padding(top = 8.dp, end = 48.dp)
                 ) {
                     Image(
@@ -132,7 +132,7 @@ fun TimeLineSection(
             },
             timeLineOption = TimeLineOption(contentHeight = 88.dp),
             modifier = Modifier
-                .background(colorResource(R.color.lemon_ice_white))
+                .background(colorResource(R.color.lemon_ice_main_bg))
                 .padding(horizontal = 16.dp)
         )
     }

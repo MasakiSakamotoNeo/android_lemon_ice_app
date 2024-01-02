@@ -18,4 +18,5 @@
     <color name="lemon_ice_orange">#EFAE48</color>
     <color name="lemon_ice_text_green">#408F91</color>
     <color name="lemon_ice_bg">#FFFB8C</color>
+    <color name="lemon_ice_main_bg">#E7EECE</color>
 </resources>
