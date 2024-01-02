@@ -58,6 +58,15 @@ fun TopScreen(
         ),
         label = "next button color"
     )
+    val textColor by infiniteTransition.animateColor(
+        initialValue = colorResource(id = R.color.lemon_ice_green),
+        targetValue = colorResource(id = R.color.lemon_ice_white),
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 5000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "next text color"
+    )
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -93,7 +102,7 @@ fun TopScreen(
             ) {
                 Text(
                     text = stringResource(id = R.string.next).uppercase(),
-                    color = colorResource(id = R.color.lemon_ice_orange),
+                    color = textColor,
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold
                 )
