@@ -23,11 +23,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.lemoniceapp.R
-import com.example.lemoniceapp.ui.main.histories
+import com.example.lemoniceapp.data.History
 
 @Composable
 fun HistorySection(
-    onClickItem: (Pair<String, Int>) -> Unit = {}
+    onClickItem: (History) -> Unit = {}
 ) {
     Row(
         modifier = Modifier
@@ -46,7 +46,7 @@ fun HistorySection(
     }
 
     LazyRow {
-        items(histories.size) { index ->
+        items(History.values().size) { index ->
             CardItem(index) { onClickItem(it) }
         }
     }
@@ -55,12 +55,12 @@ fun HistorySection(
 @Composable
 private fun CardItem(
     index: Int,
-    onClickItem: (Pair<String, Int>) -> Unit = {}
+    onClickItem: (History) -> Unit = {}
 ) {
-    val history = histories[index]
+    val history = History.values()[index]
 
-    var lastItemPaddingEnd = if (index == histories.size - 1) 16.dp else 0.dp
-    var image = painterResource(history.second)
+    var lastItemPaddingEnd = if (index == History.values().size - 1) 16.dp else 0.dp
+    var image = painterResource(history.imageResId)
 
     Box(
         modifier = Modifier

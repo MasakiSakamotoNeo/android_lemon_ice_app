@@ -8,9 +8,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-
-): ViewModel() {
+class MainViewModel @Inject constructor(): ViewModel() {
 
     var navController: NavController? = null
 
@@ -25,7 +23,7 @@ class MainViewModel @Inject constructor(
                 // TODO:
             }
             is OnClickHistoryItem -> {
-                navController?.navigate(HistoryScreenSpec.route)
+                navController?.navigate("history_screen/${event.history.key}")
             }
             is OnClickWorkItem -> {
                 navController?.navigate(WorkScreenSpec.route)

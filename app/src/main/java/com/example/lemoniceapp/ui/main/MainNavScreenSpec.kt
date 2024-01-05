@@ -9,8 +9,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.example.lemoniceapp.R
 import com.example.lemoniceapp.ui.history.HistoryDetailScreen
+import com.example.lemoniceapp.ui.history.HistoryViewModel
 import com.example.lemoniceapp.ui.timeline.TimeLineDetailScreen
 import com.example.lemoniceapp.ui.work.WorkDetailScreen
 import com.google.accompanist.systemuicontroller.SystemUiController
@@ -74,7 +77,9 @@ object MainScreenSpec : MainNavScreenSpec {
  */
 object HistoryScreenSpec : MainNavScreenSpec {
 
-    override val route = "history_screen"
+    override val route = "history_screen/{historyKey}"
+
+    override val arguments = listOf(navArgument("historyKey") { type = NavType.StringType })
 
     @Composable
     override fun Content(
@@ -82,9 +87,15 @@ object HistoryScreenSpec : MainNavScreenSpec {
         navBackStackEntry: NavBackStackEntry,
         systemUiController: SystemUiController
     ) {
-
+        val historyKey = navBackStackEntry.arguments?.getString("historyKey", "") ?: ""
+        // viewModelの生成
+        val viewModel: HistoryViewModel = hiltViewModel()
+        viewModel.navController = navController
         // History画面に遷移
-        HistoryDetailScreen()
+        HistoryDetailScreen(
+            historyKey,
+            viewModel
+        )
     }
 }
 

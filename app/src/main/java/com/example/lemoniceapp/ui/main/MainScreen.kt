@@ -37,12 +37,6 @@ import com.example.lemoniceapp.ui.main.component.WorksSection
 private val headerHeight = 250.dp
 private val toolbarHeight = 56.dp
 
-val histories = listOf(
-    "Peach ICE" to R.mipmap.peach_ice,
-    "Pear ICE" to R.mipmap.pear_ice,
-    "Melon ICE" to R.mipmap.melon_ice
-)
-
 @Composable
 fun MainScreen(
     viewModel: MainViewModel

@@ -69,7 +69,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.17.0")
 
     // Navigation
-    implementation("androidx.navigation:navigation-compose:2.7.6")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
 
     // Lottie animation
     implementation("com.airbnb.android:lottie-compose:6.2.0")
