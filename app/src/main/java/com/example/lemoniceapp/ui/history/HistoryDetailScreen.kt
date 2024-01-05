@@ -71,12 +71,12 @@ private fun HistoryDetailUI(
         LazyColumn(
             modifier = Modifier
                 .background(colorResource(R.color.lemon_ice_main_bg))
+                .padding(paddingValues)
                 .fillMaxSize()
         ) {
             item {
                 Box(
                     modifier = Modifier
-                        .padding(paddingValues)
                         .fillMaxWidth()
                 ) {
                     Image(

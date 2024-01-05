@@ -11,6 +11,4 @@ enum class History(
     MelonICE("Melon ICE", R.mipmap.melon_ice)
 }
 
-fun getHistoryByKey(key: String): History {
-    return History.values().first { it.key == key }
-}
+fun getHistoryByKey(key: String) = History.values().first { it.key == key }

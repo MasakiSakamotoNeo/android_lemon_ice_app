@@ -1,9 +1,7 @@
 package com.example.lemoniceapp.ui.main.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -22,16 +20,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.lemoniceapp.R
+import com.example.lemoniceapp.data.Work
 
-val worksList = listOf(
-    Triple("ナレっぽ", "山田 太郎", R.mipmap.ic_work_nareppo),
-    Triple("Junaブログ", "山田 太郎", R.mipmap.ic_work_junablog),
-    Triple("ともだちカメラ", "山田 太郎", R.mipmap.ic_work_tomodachicamera),
-    Triple("ポジカジ", "山田 太郎", R.mipmap.ic_work_pojikaji),
-)
 @Composable
 fun WorksSection(
-    onClickWorkItem: (Triple<String, String, Int>) -> Unit
+    onClickWorkItem: (Work) -> Unit
 ) {
     Column {
         Text(
@@ -43,7 +36,7 @@ fun WorksSection(
         )
 
         LazyRow {
-            items(worksList.size) { index ->
+            items(Work.values().size) { index ->
                 WorkItem(index) { onClickWorkItem(it) }
             }
         }
@@ -53,11 +46,11 @@ fun WorksSection(
 @Composable
 private fun WorkItem(
     index: Int,
-    onClickWorkItem: (Triple<String, String, Int>) -> Unit = {}
+    onClickWorkItem: (Work) -> Unit = {}
 ) {
-    val workItem = worksList[index]
-    val lastPaddingEnd = if (index == worksList.size - 1) 16.dp else 0.dp
-    val image = painterResource(workItem.third)
+    val workItem = Work.values()[index]
+    val lastPaddingEnd = if (index == Work.values().size - 1) 16.dp else 0.dp
+    val image = painterResource(workItem.thumbnailImageResId)
 
     Box(
         modifier = Modifier
@@ -73,7 +66,7 @@ private fun WorkItem(
             contentScale = ContentScale.Crop
         )
         Text(
-            text = workItem.first,
+            text = workItem.title,
             color = colorResource(R.color.lemon_ice_text_green),
             fontSize = 12.sp,
             modifier = Modifier.padding(bottom = 8.dp)

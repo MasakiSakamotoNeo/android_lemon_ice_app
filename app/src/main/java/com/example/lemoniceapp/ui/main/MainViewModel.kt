@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(): ViewModel() {
                 navController?.navigate("history_screen/${event.history.key}")
             }
             is OnClickWorkItem -> {
-                navController?.navigate(WorkScreenSpec.route)
+                navController?.navigate("work_screen/${event.work.key}")
             }
             is OnClickTimeLineItem -> {
                 navController?.navigate(TimeLineScreenSpec.route)

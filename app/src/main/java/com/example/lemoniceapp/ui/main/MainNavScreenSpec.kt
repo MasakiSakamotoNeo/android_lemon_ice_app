@@ -104,7 +104,9 @@ object HistoryScreenSpec : MainNavScreenSpec {
  */
 object WorkScreenSpec : MainNavScreenSpec {
 
-    override val route = "work_screen"
+    override val route = "work_screen/{workKey}"
+
+    override val arguments = listOf(navArgument("workKey") { type = NavType.StringType })
 
     @Composable
     override fun Content(
@@ -112,9 +114,13 @@ object WorkScreenSpec : MainNavScreenSpec {
         navBackStackEntry: NavBackStackEntry,
         systemUiController: SystemUiController
     ) {
-
+        val workKey = navBackStackEntry.arguments?.getString("workKey", "") ?: ""
+        // viewModelの生成
+        // TODO:
         // Work画面に遷移
-        WorkDetailScreen()
+        WorkDetailScreen(
+            workKey
+        )
     }
 }
 
