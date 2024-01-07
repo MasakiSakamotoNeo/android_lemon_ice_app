@@ -22,22 +22,30 @@ import com.example.lemoniceapp.R
 import com.example.lemoniceapp.data.getWorkByKey
 
 @Composable
-fun WorkDetailScreen(key: String) {
-    WorkDetailUI(key)
+fun WorkDetailScreen(
+    key: String,
+    viewModel: WorkViewModel
+) {
+    WorkDetailUI(
+        key,
+        onEvent = { viewModel.onEvent(it) }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun WorkDetailUI(
-    key: String
+    key: String,
+    onEvent: (WorkDetailScreenEvent) -> Unit
 ) {
+    val workItem = getWorkByKey(key)
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
                     Box {
                         Text(
-                            text = getWorkByKey(key).title,
+                            text = workItem.title,
                             fontSize = 18.sp,
                             color = colorResource(R.color.lemon_ice_white)
                         )
@@ -48,9 +56,7 @@ private fun WorkDetailUI(
                 ),
                 navigationIcon = {
                     IconButton(
-                        onClick = {
-                            // TODO:
-                        }
+                        onClick = { onEvent(OnBackPress) }
                     ) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,

@@ -17,6 +17,7 @@ import com.example.lemoniceapp.ui.history.HistoryViewModel
 import com.example.lemoniceapp.ui.timeline.TimeLineDetailScreen
 import com.example.lemoniceapp.ui.timeline.TimeLineViewModel
 import com.example.lemoniceapp.ui.work.WorkDetailScreen
+import com.example.lemoniceapp.ui.work.WorkViewModel
 import com.google.accompanist.systemuicontroller.SystemUiController
 
 sealed interface MainNavScreenSpec {
@@ -117,10 +118,12 @@ object WorkScreenSpec : MainNavScreenSpec {
     ) {
         val workKey = navBackStackEntry.arguments?.getString("workKey", "") ?: ""
         // viewModelの生成
-        // TODO:
+        val viewModel: WorkViewModel = hiltViewModel()
+        viewModel.navController = navController
         // Work画面に遷移
         WorkDetailScreen(
-            workKey
+            workKey,
+            viewModel
         )
     }
 }
