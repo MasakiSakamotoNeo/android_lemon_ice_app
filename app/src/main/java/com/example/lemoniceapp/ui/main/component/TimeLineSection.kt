@@ -25,9 +25,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.lemoniceapp.R
-import com.example.lemoniceapp.ui.main.component.timeline.TimeLine
+import com.example.lemoniceapp.data.TimeLine
 import com.example.lemoniceapp.ui.main.component.timeline.TimeLineItem
 import com.example.lemoniceapp.ui.main.component.timeline.TimeLineOption
+import com.example.lemoniceapp.ui.main.component.timeline.TimeLineUI
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -43,44 +44,19 @@ fun TimeLineSection(
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         )
 
-        TimeLine(
-            items = listOf(
-                TimeLineItem(
-                    title = "Opening",
-                    time = "13:00〜13:10",
-                    imageResId = R.drawable.opening_header
-                ),
-                TimeLineItem(
-                    title = "ExtensionLab",
-                    time = "13:20〜13:50",
-                    imageResId = R.drawable.extensionlab_team_header
-                ),
-                TimeLineItem(
-                    title = "ハッカソン発表会",
-                    time = "14:00〜14:40",
-                    imageResId = R.drawable.hackathon_header
-                ),
-                TimeLineItem(
-                    title = "アプリ部活動報告",
-                    time = "14:50〜15:20",
-                    imageResId = R.drawable.itpm_application_section_header
-                ),
-                TimeLineItem(
-                    title = "0から1へインフラの世界",
-                    time = "15:30〜16:00",
-                    imageResId = R.drawable.hirata_header
-                ),
-                TimeLineItem(
-                    title = "3Dメジャー機能実装で難しかったところ",
-                    time = "16:10〜16:40",
-                    imageResId = R.drawable.sakamoto_header
-                ),
-                TimeLineItem(
-                    title = "Closing",
-                    time = "16:50〜17:00",
-                    imageResId = R.mipmap.melon_ice
-                )
-            ),
+        TimeLineUI(
+            items = mutableListOf<TimeLineItem>().apply {
+                TimeLine.values().forEach { timeLine ->
+                    add(
+                        TimeLineItem(
+                            key = timeLine.key,
+                            title = timeLine.title,
+                            time = timeLine.time,
+                            imageResId = timeLine.bgImageResId
+                        )
+                    )
+                }
+            },
             header = { title ->
                 Text(
                     text = title,

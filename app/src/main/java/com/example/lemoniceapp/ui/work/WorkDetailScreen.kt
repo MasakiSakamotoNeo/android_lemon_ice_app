@@ -17,6 +17,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.sp
 import com.example.lemoniceapp.R
 import com.example.lemoniceapp.data.getWorkByKey
 
@@ -34,7 +35,13 @@ private fun WorkDetailUI(
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Box { Text(text = getWorkByKey(key).title, color = colorResource(R.color.lemon_ice_white)) }
+                    Box {
+                        Text(
+                            text = getWorkByKey(key).title,
+                            fontSize = 18.sp,
+                            color = colorResource(R.color.lemon_ice_white)
+                        )
+                    }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = colorResource(R.color.lemon_ice_green)

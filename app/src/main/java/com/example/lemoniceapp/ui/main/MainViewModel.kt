@@ -29,7 +29,7 @@ class MainViewModel @Inject constructor(): ViewModel() {
                 navController?.navigate("work_screen/${event.work.key}")
             }
             is OnClickTimeLineItem -> {
-                navController?.navigate(TimeLineScreenSpec.route)
+                navController?.navigate("timeline_screen/${event.item.key}")
             }
         }
     }

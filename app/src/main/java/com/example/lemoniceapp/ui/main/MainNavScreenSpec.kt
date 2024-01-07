@@ -15,6 +15,7 @@ import com.example.lemoniceapp.R
 import com.example.lemoniceapp.ui.history.HistoryDetailScreen
 import com.example.lemoniceapp.ui.history.HistoryViewModel
 import com.example.lemoniceapp.ui.timeline.TimeLineDetailScreen
+import com.example.lemoniceapp.ui.timeline.TimeLineViewModel
 import com.example.lemoniceapp.ui.work.WorkDetailScreen
 import com.google.accompanist.systemuicontroller.SystemUiController
 
@@ -129,7 +130,9 @@ object WorkScreenSpec : MainNavScreenSpec {
  */
 object TimeLineScreenSpec : MainNavScreenSpec {
 
-    override val route = "timeline_screen"
+    override val route = "timeline_screen/{timelineKey}"
+
+    override val arguments = listOf(navArgument("timelineKey") { type = NavType.StringType })
 
     @Composable
     override fun Content(
@@ -137,8 +140,14 @@ object TimeLineScreenSpec : MainNavScreenSpec {
         navBackStackEntry: NavBackStackEntry,
         systemUiController: SystemUiController
     ) {
-
+        val timelineKey = navBackStackEntry.arguments?.getString("timelineKey", "") ?: ""
+        // viewModelの生成
+        val viewModel: TimeLineViewModel = hiltViewModel()
+        viewModel.navController = navController
         // TimeLine画面に遷移
-        TimeLineDetailScreen()
+        TimeLineDetailScreen(
+            timelineKey,
+            viewModel
+        )
     }
 }

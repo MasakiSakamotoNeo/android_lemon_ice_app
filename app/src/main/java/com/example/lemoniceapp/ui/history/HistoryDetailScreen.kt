@@ -23,6 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.lemoniceapp.R
 import com.example.lemoniceapp.data.getHistoryByKey
 
@@ -43,12 +44,19 @@ private fun HistoryDetailUI(
     key: String,
     onEvent: (HistoryDetailScreenEvent) -> Unit
 ) {
+    val historyItem = getHistoryByKey(key)
     Scaffold(
         topBar = {
             Surface(shadowElevation = 4.dp) {
                 CenterAlignedTopAppBar(
                     title = {
-                        Box { Text(text = key, color = colorResource(R.color.lemon_ice_white)) }
+                        Box {
+                            Text(
+                                text = historyItem.title,
+                                fontSize = 18.sp,
+                                color = colorResource(R.color.lemon_ice_white)
+                            )
+                        }
                     },
                     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                         containerColor = colorResource(R.color.lemon_ice_green)
@@ -80,7 +88,7 @@ private fun HistoryDetailUI(
                         .fillMaxWidth()
                 ) {
                     Image(
-                        painter = painterResource(getHistoryByKey(key).imageResId),
+                        painter = painterResource(historyItem.imageResId),
                         contentDescription = "history image",
                         contentScale = ContentScale.FillWidth,
                         modifier = Modifier.fillMaxWidth()
