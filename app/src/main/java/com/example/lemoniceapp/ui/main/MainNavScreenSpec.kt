@@ -1,6 +1,7 @@
 package com.example.lemoniceapp.ui.main
 
 import android.app.Activity
+import androidx.compose.material3.DrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -42,7 +43,8 @@ sealed interface MainNavScreenSpec {
     fun Content(
         navController: NavController,
         navBackStackEntry: NavBackStackEntry,
-        systemUiController: SystemUiController
+        systemUiController: SystemUiController,
+        drawerState: DrawerState
     )
 }
 
@@ -57,7 +59,8 @@ object TopScreenSpec : MainNavScreenSpec {
     override fun Content(
         navController: NavController,
         navBackStackEntry: NavBackStackEntry,
-        systemUiController: SystemUiController
+        systemUiController: SystemUiController,
+        drawerState: DrawerState
     ) {
         val context = LocalContext.current
         val window = (context as Activity).window
@@ -77,13 +80,18 @@ object MainScreenSpec : MainNavScreenSpec {
     override fun Content(
         navController: NavController,
         navBackStackEntry: NavBackStackEntry,
-        systemUiController: SystemUiController
+        systemUiController: SystemUiController,
+        drawerState: DrawerState
     ) {
         val context = LocalContext.current
         val window = (context as Activity).window
         // viewModelの生成
         val viewModel: MainViewModel = hiltViewModel()
-        viewModel.navController = navController
+        viewModel.apply {
+            this.navController = navController
+            this.drawerState = drawerState
+        }
+
         showSystemUI(window)
 
         LemonICEAppTheme {
@@ -106,7 +114,8 @@ object HistoryScreenSpec : MainNavScreenSpec {
     override fun Content(
         navController: NavController,
         navBackStackEntry: NavBackStackEntry,
-        systemUiController: SystemUiController
+        systemUiController: SystemUiController,
+        drawerState: DrawerState
     ) {
         val historyKey = navBackStackEntry.arguments?.getString("historyKey", "") ?: ""
         // viewModelの生成
@@ -133,7 +142,8 @@ object WorkScreenSpec : MainNavScreenSpec {
     override fun Content(
         navController: NavController,
         navBackStackEntry: NavBackStackEntry,
-        systemUiController: SystemUiController
+        systemUiController: SystemUiController,
+        drawerState: DrawerState
     ) {
         val workKey = navBackStackEntry.arguments?.getString("workKey", "") ?: ""
         // viewModelの生成
@@ -160,7 +170,8 @@ object TimeLineScreenSpec : MainNavScreenSpec {
     override fun Content(
         navController: NavController,
         navBackStackEntry: NavBackStackEntry,
-        systemUiController: SystemUiController
+        systemUiController: SystemUiController,
+        drawerState: DrawerState
     ) {
         val timelineKey = navBackStackEntry.arguments?.getString("timelineKey", "") ?: ""
         // viewModelの生成

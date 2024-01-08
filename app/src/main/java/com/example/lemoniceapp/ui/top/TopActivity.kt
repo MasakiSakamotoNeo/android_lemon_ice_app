@@ -5,6 +5,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
@@ -29,11 +35,23 @@ class TopActivity : ComponentActivity() {
             LemonICEAppTheme {
                 val navController = rememberNavController()
                 val systemUiController = rememberSystemUiController()
+                val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
-                MainNavHost(
-                    navController = navController,
-                    systemUiController = systemUiController
-                )
+                ModalNavigationDrawer(
+                    drawerState = drawerState,
+                    drawerContent = {
+                        // ドロワーメニューコンテンツ
+                        ModalDrawerSheet {
+                            Text(text = "サンプル")
+                        }
+                    }
+                ) {
+                    MainNavHost(
+                        navController = navController,
+                        systemUiController = systemUiController,
+                        drawerState = drawerState
+                    )
+                }
             }
         }
     }
@@ -43,7 +61,8 @@ class TopActivity : ComponentActivity() {
 fun MainNavHost(
     startDestination: String = TopScreenSpec.route,
     navController: NavHostController,
-    systemUiController: SystemUiController
+    systemUiController: SystemUiController,
+    drawerState: DrawerState
 ) {
 
     NavHost(
@@ -58,7 +77,8 @@ fun MainNavHost(
                 spec.Content(
                     navController = navController,
                     navBackStackEntry = it,
-                    systemUiController = systemUiController
+                    systemUiController = systemUiController,
+                    drawerState = drawerState
                 )
             }
         }

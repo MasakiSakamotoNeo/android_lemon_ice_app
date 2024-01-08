@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -33,6 +34,7 @@ import com.example.lemoniceapp.R
 import com.example.lemoniceapp.ui.main.component.HistorySection
 import com.example.lemoniceapp.ui.main.component.TimeLineSection
 import com.example.lemoniceapp.ui.main.component.WorksSection
+import kotlinx.coroutines.launch
 
 private val headerHeight = 250.dp
 private val toolbarHeight = 56.dp
@@ -41,8 +43,20 @@ private val toolbarHeight = 56.dp
 fun MainScreen(
     viewModel: MainViewModel
 ) {
-    // TODO:
-    MainUI(onEvent = { viewModel.onEvent(it) }) 
+
+    val coroutineScope = rememberCoroutineScope()
+
+    MainUI(
+        onEvent = {
+            if (it == OnClickDrawerMenu) {
+                coroutineScope.launch {
+                    viewModel.drawerState?.open()
+                }
+            } else {
+                viewModel.onEvent(it)
+            }
+        }
+    )
 }
 
 @Composable
@@ -66,33 +80,34 @@ fun CollapsingToolbarParallaxEffect(
     val scroll: ScrollState = rememberScrollState()
     val headerHeightPx = with(LocalDensity.current) { headerHeight.toPx() }
     val toolbarHeightPx = with(LocalDensity.current) { toolbarHeight.toPx() }
-    val systemBarsPadding = WindowInsets.systemBars.asPaddingValues()
-    val height = systemBarsPadding.calculateTopPadding()
 
-    Box(
-        modifier = modifier
-            .background(color = colorResource(R.color.lemon_ice_main_bg))
-    ) {
-        Header(
-            scroll = scroll,
-            headerHeightPx = headerHeightPx,
-            modifier = Modifier
-                .padding(top = height)
-                .fillMaxWidth()
-                .height(headerHeight)
-        )
-        Body(
-            scroll = scroll,
-            modifier = Modifier
-                .padding(top = height)
-                .fillMaxSize(),
-            onEvent = onEvent
-        )
-        Toolbar(
-            scroll = scroll,
-            headerHeightPx = headerHeightPx,
-            toolbarHeightPx = toolbarHeightPx
-        )
+    Scaffold { paddingValues ->
+        Box(
+            modifier = modifier
+                .background(color = colorResource(R.color.lemon_ice_main_bg))
+        ) {
+            Header(
+                scroll = scroll,
+                headerHeightPx = headerHeightPx,
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .fillMaxWidth()
+                    .height(headerHeight)
+            )
+            Body(
+                scroll = scroll,
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .fillMaxSize(),
+                onEvent = onEvent
+            )
+            Toolbar(
+                scroll = scroll,
+                headerHeightPx = headerHeightPx,
+                toolbarHeightPx = toolbarHeightPx,
+                onEvent = onEvent
+            )
+        }
     }
 }
 
@@ -156,7 +171,8 @@ private fun Toolbar(
     scroll: ScrollState,
     headerHeightPx: Float,
     toolbarHeightPx: Float,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onEvent: (MainScreenEvent) -> Unit
 ) {
     val toolbarBottom by remember {
         mutableStateOf(headerHeightPx - toolbarHeightPx)
@@ -177,7 +193,7 @@ private fun Toolbar(
         TopAppBar(
             navigationIcon = {
                 IconButton(
-                    onClick = {},
+                    onClick = { onEvent(OnClickDrawerMenu) },
                     modifier = Modifier
                         .padding(16.dp)
                         .size(24.dp)
