@@ -66,18 +66,26 @@ fun CollapsingToolbarParallaxEffect(
     val scroll: ScrollState = rememberScrollState()
     val headerHeightPx = with(LocalDensity.current) { headerHeight.toPx() }
     val toolbarHeightPx = with(LocalDensity.current) { toolbarHeight.toPx() }
+    val systemBarsPadding = WindowInsets.systemBars.asPaddingValues()
+    val height = systemBarsPadding.calculateTopPadding()
 
-    Box(modifier = modifier.background(color = colorResource(R.color.lemon_ice_main_bg))) {
+    Box(
+        modifier = modifier
+            .background(color = colorResource(R.color.lemon_ice_main_bg))
+    ) {
         Header(
             scroll = scroll,
             headerHeightPx = headerHeightPx,
             modifier = Modifier
+                .padding(top = height)
                 .fillMaxWidth()
                 .height(headerHeight)
         )
         Body(
             scroll = scroll,
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .padding(top = height)
+                .fillMaxSize(),
             onEvent = onEvent
         )
         Toolbar(

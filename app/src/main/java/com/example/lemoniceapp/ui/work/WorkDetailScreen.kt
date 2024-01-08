@@ -3,6 +3,7 @@ package com.example.lemoniceapp.ui.work
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -96,39 +97,53 @@ private fun WorkDetailUI(
                     )
                 }
 
-                Row(modifier = Modifier.padding(bottom = 8.dp)) {
-                    Icon(
-                        imageVector = Icons.Filled.Info,
-                        contentDescription = "Description",
-                        tint = colorResource(R.color.lemon_ice_text_green)
-                    )
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxSize()
+                ) {
+                    Row(modifier = Modifier.padding(bottom = 8.dp)) {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = "Description",
+                            tint = colorResource(R.color.lemon_ice_text_green)
+                        )
+                        Text(
+                            text = "Description",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = colorResource(R.color.lemon_ice_text_green),
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+
                     Text(
-                        text = "Description",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = colorResource(R.color.lemon_ice_text_green),
+                        text = workItem.destination,
+                        fontSize = 16.sp,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+
+                    Row(modifier = Modifier.padding(bottom = 8.dp)) {
+                        Icon(
+                            imageVector = Icons.Filled.Face,
+                            contentDescription = "Author",
+                            tint = colorResource(R.color.lemon_ice_text_green)
+                        )
+                        Text(
+                            text = "Author",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = colorResource(R.color.lemon_ice_text_green),
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+
+                    Text(
+                        text = workItem.author,
+                        fontSize = 16.sp,
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
-
-                Text(text = "")
-
-                Row(modifier = Modifier.padding(bottom = 8.dp)) {
-                    Icon(
-                        imageVector = Icons.Filled.Face,
-                        contentDescription = "Author",
-                        tint = colorResource(R.color.lemon_ice_text_green)
-                    )
-                    Text(
-                        text = "Author",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = colorResource(R.color.lemon_ice_text_green),
-                        modifier = Modifier.padding(start = 8.dp)
-                    )
-                }
-
-                Text(text = "")
             }
         }
     }
