@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -120,24 +119,7 @@ private fun HistoryDetailUI(
                         )
                     }
 
-                    Text(text = "")
-
-                    Row(modifier = Modifier.padding(bottom = 8.dp)) {
-                        Icon(
-                            imageVector = Icons.Filled.Face,
-                            contentDescription = "Author",
-                            tint = colorResource(R.color.lemon_ice_text_green)
-                        )
-                        Text(
-                            text = "Author",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = colorResource(R.color.lemon_ice_text_green),
-                            modifier = Modifier.padding(start = 8.dp)
-                        )
-                    }
-
-                    Text(text = "")
+                    Text(text = historyItem.description)
                 }
             }
         }
