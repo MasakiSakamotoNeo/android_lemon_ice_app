@@ -126,7 +126,7 @@ private fun Header(
             }
     ) {
         Image(
-            painter = painterResource(id = R.drawable.lemon_ice),
+            painter = painterResource(id = R.drawable.fig_ice),
             contentDescription = "header image",
             contentScale = ContentScale.FillBounds
         )

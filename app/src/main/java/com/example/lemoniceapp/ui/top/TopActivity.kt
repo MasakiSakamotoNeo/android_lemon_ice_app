@@ -56,7 +56,7 @@ class TopActivity : ComponentActivity() {
                         ModalDrawerSheet {
                             Column(
                                 modifier = Modifier
-                                    .background(colorResource(id = R.color.lemon_ice_main_bg))
+                                    .background(colorResource(id = R.color.white))
                                     .fillMaxSize()
                             ) {
                                 DrawerHeader()
