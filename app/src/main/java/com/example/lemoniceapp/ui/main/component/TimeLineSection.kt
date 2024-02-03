@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,7 +38,7 @@ fun TimeLineSection(
 ) {
     Column {
         Text(
-            text = "TimeLine",
+            text = stringResource(R.string.timeline),
             color = colorResource(R.color.lemon_ice_text_green),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,

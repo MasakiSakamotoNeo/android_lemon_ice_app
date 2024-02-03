@@ -13,28 +13,28 @@ enum class Work(
     Nareppo(
         "nareppo",
         "ナレっぽ",
-        "",
-        "",
+        "学習支援アプリ",
+        "未入力",
         R.mipmap.ic_work_nareppo, R.mipmap.ic_work_nareppo_bg
     ),
     JunaBlog(
         "junablog",
         "Junaブログ",
-        "",
-        "",
+        "ブログサイト制作",
+        "未入力",
         R.mipmap.ic_work_junablog, R.mipmap.ic_work_junablog_bg
     ),
     TomodachiCamera(
         "tomodachicamera",
         "ともだちカメラ",
-        "",
-        "中村 麻衣子",
+        "撮影支援アプリ",
+        "未入力",
         R.mipmap.ic_work_tomodachicamera, R.mipmap.ic_work_tomodachicamera_bg),
     PojiKaji(
         "pojikaji",
         "ポジカジ",
-        "",
-        "木村 ",
+        "家事手伝い管理アプリ",
+        "未入力",
         R.mipmap.ic_work_pojikaji, R.mipmap.ic_work_pojikaji_bg
     )
 }

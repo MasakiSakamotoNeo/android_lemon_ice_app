@@ -1,7 +1,6 @@
 package com.example.lemoniceapp.ui.main.component.timeline
 
 import androidx.annotation.DrawableRes
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp

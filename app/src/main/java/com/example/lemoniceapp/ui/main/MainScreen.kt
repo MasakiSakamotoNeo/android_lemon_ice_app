@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import com.example.lemoniceapp.R
 import com.example.lemoniceapp.ui.main.component.HistorySection
 import com.example.lemoniceapp.ui.main.component.TimeLineSection
+import com.example.lemoniceapp.ui.main.component.VenueSection
 import com.example.lemoniceapp.ui.main.component.WorksSection
 import kotlinx.coroutines.launch
 
@@ -159,6 +160,9 @@ private fun Body(
 
         // 今までの作品
         WorksSection { onEvent(OnClickWorkItem(it)) }
+
+        // 会場
+        VenueSection()
 
         // 今回のタイムライン
         TimeLineSection { onEvent(OnClickTimeLineItem(it)) }

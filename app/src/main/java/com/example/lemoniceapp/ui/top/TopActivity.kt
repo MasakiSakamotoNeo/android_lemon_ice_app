@@ -5,18 +5,30 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.lemoniceapp.R
+import com.example.lemoniceapp.ui.drawer.DrawerBody
+import com.example.lemoniceapp.ui.drawer.DrawerHeader
+import com.example.lemoniceapp.ui.drawer.MenuItem
 import com.example.lemoniceapp.ui.main.MainNavScreenSpec
 import com.example.lemoniceapp.ui.main.TopScreenSpec
 import com.example.lemoniceapp.ui.theme.LemonICEAppTheme
@@ -42,7 +54,38 @@ class TopActivity : ComponentActivity() {
                     drawerContent = {
                         // ドロワーメニューコンテンツ
                         ModalDrawerSheet {
-                            Text(text = "サンプル")
+                            Column(
+                                modifier = Modifier
+                                    .background(colorResource(id = R.color.lemon_ice_main_bg))
+                                    .fillMaxSize()
+                            ) {
+                                DrawerHeader()
+                                DrawerBody(
+                                    items = listOf(
+                                        MenuItem(
+                                            id = "home",
+                                            title = getString(R.string.home),
+                                            contentDescription = "Go to home screen",
+                                            icon = Icons.Default.Home
+                                        ),
+                                        MenuItem(
+                                            id = "settings",
+                                            title = getString(R.string.settings),
+                                            contentDescription = "Go to home screen",
+                                            icon = Icons.Default.Settings
+                                        ),
+                                        MenuItem(
+                                            id = "help",
+                                            title = getString(R.string.help),
+                                            contentDescription = "Go to home screen",
+                                            icon = Icons.Default.Info
+                                        ),
+                                    ),
+                                    onItemClick = {
+                                        // TODO: アイテム選択時の処理未実装
+                                    }
+                                )
+                            }
                         }
                     }
                 ) {

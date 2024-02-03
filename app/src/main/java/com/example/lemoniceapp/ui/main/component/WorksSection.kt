@@ -4,6 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -16,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,14 +29,29 @@ import com.example.lemoniceapp.data.Work
 fun WorksSection(
     onClickWorkItem: (Work) -> Unit
 ) {
-    Column {
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
         Text(
-            text = "Works",
+            text = stringResource(R.string.works),
             color = colorResource(R.color.lemon_ice_text_green),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(16.dp)
         )
+
+        Text(
+            text = "（${stringResource(R.string.works_so_far)}）",
+            color = colorResource(id = R.color.lemon_ice_text_green),
+            fontSize = 14.sp,
+        )
+    }
+
+    Column {
 
         LazyRow {
             items(Work.values().size) { index ->
