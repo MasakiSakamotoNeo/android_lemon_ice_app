@@ -29,6 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -56,6 +57,7 @@ private fun HistoryDetailUI(
     onEvent: (HistoryDetailScreenEvent) -> Unit
 ) {
 
+    val context = LocalContext.current
     val historyItem = getHistoryByKey(key)
     Scaffold(
         topBar = {
@@ -136,7 +138,10 @@ private fun HistoryDetailUI(
                         .fillMaxWidth()
                 ) {
                     Button(
-                        modifier = Modifier.align(Alignment.BottomCenter),
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(horizontal = 16.dp)
+                            .fillMaxWidth(),
                         colors = ButtonDefaults.textButtonColors(
                             containerColor = colorResource(id = R.color.lemon_ice_text_green),
                             contentColor = colorResource(id = R.color.lemon_ice_white)

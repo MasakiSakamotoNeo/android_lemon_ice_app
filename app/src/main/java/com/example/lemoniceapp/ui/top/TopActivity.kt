@@ -5,9 +5,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -18,8 +23,11 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -27,6 +35,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.lemoniceapp.R
 import com.example.lemoniceapp.ui.drawer.DrawerBody
+import com.example.lemoniceapp.ui.drawer.DrawerFooter
 import com.example.lemoniceapp.ui.drawer.DrawerHeader
 import com.example.lemoniceapp.ui.drawer.MenuItem
 import com.example.lemoniceapp.ui.main.MainNavScreenSpec
@@ -56,11 +65,12 @@ class TopActivity : ComponentActivity() {
                         ModalDrawerSheet {
                             Column(
                                 modifier = Modifier
-                                    .background(colorResource(id = R.color.white))
+                                    .background(colorResource(id = R.color.lemon_ice_main_bg))
                                     .fillMaxSize()
                             ) {
                                 DrawerHeader()
                                 DrawerBody(
+                                    modifier = Modifier.weight(1f).fillMaxWidth(),
                                     items = listOf(
                                         MenuItem(
                                             id = "home",
@@ -85,6 +95,7 @@ class TopActivity : ComponentActivity() {
                                         // TODO: アイテム選択時の処理未実装
                                     }
                                 )
+                                DrawerFooter()
                             }
                         }
                     }

@@ -74,3 +74,8 @@ fun DrawerBody(
         }
     }
 }
+
+@Composable
+fun DrawerFooter() {
+    // TODO: フッターを追加する
+}

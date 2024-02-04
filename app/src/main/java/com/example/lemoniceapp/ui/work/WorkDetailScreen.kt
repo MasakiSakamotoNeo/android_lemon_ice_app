@@ -158,7 +158,10 @@ private fun WorkDetailUI(
                         .fillMaxWidth()
                 ) {
                     Button(
-                        modifier = Modifier.align(Alignment.BottomCenter),
+                        modifier = Modifier
+                            .align(Alignment.BottomCenter)
+                            .padding(horizontal = 16.dp)
+                            .fillMaxWidth(),
                         colors = ButtonDefaults.textButtonColors(
                             containerColor = colorResource(id = R.color.lemon_ice_text_green),
                             contentColor = colorResource(id = R.color.lemon_ice_white)

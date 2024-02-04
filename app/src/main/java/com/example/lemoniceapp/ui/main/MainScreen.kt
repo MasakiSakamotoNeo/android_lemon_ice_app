@@ -1,5 +1,7 @@
 package com.example.lemoniceapp.ui.main
 
+import android.app.Activity
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -23,6 +25,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -46,6 +49,11 @@ fun MainScreen(
 ) {
 
     val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
+
+    BackHandler {
+        if (context is Activity) context.finish()
+    }
 
     MainUI(
         onEvent = {
