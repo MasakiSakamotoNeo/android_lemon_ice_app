@@ -1,5 +1,6 @@
 package com.example.lemoniceapp.ui.work
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -29,6 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -56,6 +58,7 @@ private fun WorkDetailUI(
     onEvent: (WorkDetailScreenEvent) -> Unit
 ) {
     val workItem = getWorkByKey(key)
+    val context = LocalContext.current
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -167,7 +170,7 @@ private fun WorkDetailUI(
                             contentColor = colorResource(id = R.color.lemon_ice_white)
                         ),
                         onClick = {
-                            // TODO: 「いいね」ボタンを押した時の処理の実装
+                            Toast.makeText(context, "いいね！をしました。", Toast.LENGTH_SHORT).show()
                         }) {
                         Icon(
                             Icons.Filled.Favorite,
